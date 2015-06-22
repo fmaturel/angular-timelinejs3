@@ -1,0 +1,8 @@
+/* app css stylesheet */
+
+.timeline .vco-icon-media-demo:after {
+  font-family: 'Glyphicons Halflings';
+  font-weight: bold;
+
+  content: "\e021";
+}
