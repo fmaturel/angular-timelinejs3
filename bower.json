@@ -1,15 +1,19 @@
 {
   "name": "angular-timelinejs3",
-  "description": "A starter project for AngularJS",
+  "appPath": "app",
   "version": "0.0.1",
+  "description": "A starter project for AngularJS",
   "homepage": "https://github.com/fmaturel/angular-timelinejs3",
   "license": "MIT",
+  "main": [
+    "dist/js/ng-timeline.js"
+  ],
   "dependencies": {
     "angular": "~1.4.0",
     "angular-route": "~1.4.0",
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0",
-    "TimelineJS3": "https://github.com/NUKnightLab/TimelineJS3.git#3.1.0",
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "TimelineJS3": "https://github.com/NUKnightLab/TimelineJS3.git#3.1.0"
   }
 }

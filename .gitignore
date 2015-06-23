@@ -3,6 +3,7 @@ logs/*
 node_modules/
 app/bower_components/
 tmp
+dist
 .DS_Store
 .idea
 *.iml

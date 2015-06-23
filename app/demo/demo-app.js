@@ -10,7 +10,7 @@ angular.module('ngTimelineDemoApp', [
   config(['$routeProvider', 'TimelineMediaTypeServiceProvider', function ($routeProvider, TimelineMediaTypeServiceProvider) {
     $routeProvider
       .when('/demo', {
-        templateUrl: './demo/views/demo.html',
+        templateUrl: './demo/demo.html',
         controller: 'DemoController'
       })
       .otherwise({redirectTo: '/demo'});

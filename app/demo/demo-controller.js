@@ -6,7 +6,7 @@ angular.module('ngTimelineDemoApp')
       $scope.timelineData = {
         "title": {
           "media": {
-            "url": "/app/images/input.png",
+            "url": "/images/input.png",
             "caption": "From punch cards to multi touch.",
             "credit": "Arjuna Soriano"
           },
