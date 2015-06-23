@@ -182,14 +182,12 @@
            dot: true,
            cwd: '.tmp',
            dest: '<%= yeoman.dist %>',
-           src: [
-             'js/ng-timeline.js'
-           ]
+           src: ['js/ng-timeline.js']
           }, {
             expand: true,
             cwd: '<%= yeoman.app %>/bower_components',
             src: '**',
-            dest: '<%= yeoman.dist %>//bower_components'
+            dest: '<%= yeoman.dist %>/bower_components'
           }]
         },
         styles: {
