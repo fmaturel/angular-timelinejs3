@@ -1,8 +1,8 @@
 {
-  "name": "angular-timeline",
+  "name": "angular-timelinejs3",
   "version": "0.0.1",
   "description": "A quick directive project for making AngularJS use TimelineJS3",
-  "repository": "https://github.com/fmaturel/angular-timeline",
+  "repository": "https://github.com/fmaturel/angular-timelinejs3",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.4.1",

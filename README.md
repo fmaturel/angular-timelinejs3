@@ -2,11 +2,11 @@
 
 A quick directive project for making AngularJS use TimelineJS3.
 
-[![Build Status](https://secure.travis-ci.org/fmaturel/angular-timeline.svg)](http:/travis-ci.org/fmaturel/angular-timeline)
+[![Build Status](https://secure.travis-ci.org/fmaturel/angular-timelinejs3.svg)](http:/travis-ci.org/fmaturel/angular-timelinejs3)
 
 # Demo
 
-[Demo](http://rpocklin.github.io/angular-timeline/example/index.html)
+[Demo](http://fmaturel.github.io/angular-timelinejs3/example/index.html)
 
 ## Install
 
