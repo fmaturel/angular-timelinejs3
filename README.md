@@ -6,14 +6,14 @@ A quick directive project for making AngularJS use TimelineJS3.
 
 ## Demo
 
-Run the demo @home with few steps (prerequisite node V0.10+ & npm installed):
+Run the demo @home with few steps (prerequisite git & node V0.10+ & npm installed):
 
 ```
  git clone https://github.com/fmaturel/angular-timelinejs3.git && cd angular-timelinejs3
  npm install
- npm install -g grunt-cli
- npm install -g bower
- bower install angular-timelinejs3 --save
+ sudo npm install -g grunt-cli
+ sudo npm install -g bower
+ bower install
 ```
 
 Then run 
@@ -22,7 +22,7 @@ Then run
 
 ## Install
 
-> bower install angular-timelinejs3
+> bower install angular-timelinejs3 --save
 
 Add the new Timeline JS3 css and javascript to your index.html.
 
@@ -31,7 +31,7 @@ Add the new Timeline JS3 css and javascript to your index.html.
  &lt;script src="bower_components/TimelineJS3/compiled/js/timeline.js" /&gt; 
 ```
 
-Add dependency to timeline your angular module: `ng-timeline`.
+Add dependency to timeline your angular module: `ngTimeline`.
 
 Use the directive:
 
