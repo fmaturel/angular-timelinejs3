@@ -38,7 +38,7 @@
           tasks: ['wiredep']
         },
         js: {
-          files: ['<%= yeoman.app %>/*/js/{,*/}*.js'],
+          files: ['<%= yeoman.app %>/*/{,*/}*.js'],
           tasks: ['newer:concat:js', 'newer:jshint:all'],
           options: {
             livereload: '<%= connect.options.livereload %>'
@@ -101,7 +101,7 @@
             port: 9001,
             middleware: function (connect) {
               return [
-                connect.static('test'),
+                connect.static('tests'),
                 connect.static('.tmp'),
                 connect.static(appConfig.app)
               ];
@@ -222,9 +222,6 @@
 
     grunt.registerTask('test', [
       'clean:server',
-      'wiredep',
-      'concurrent:test',
-      'autoprefixer',
       'connect:test',
       'karma'
     ]);
