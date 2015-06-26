@@ -4,9 +4,21 @@ A quick directive project for making AngularJS use TimelineJS3.
 
 [![Build Status](https://secure.travis-ci.org/fmaturel/angular-timelinejs3.svg)](http:/travis-ci.org/fmaturel/angular-timelinejs3)
 
-# Demo
+## Demo
 
-[Demo](http://fmaturel.github.io/angular-timelinejs3/example/index.html)
+Run the demo @home with few steps (prerequisite node V0.10+ & npm installed):
+
+```
+ git clone https://github.com/fmaturel/angular-timelinejs3.git && cd angular-timelinejs3
+ npm install
+ npm install -g grunt-cli
+ npm install -g bower
+ bower install angular-timelinejs3 --save
+```
+
+Then run 
+
+`grunt serve:dist`
 
 ## Install
 
@@ -14,10 +26,16 @@ A quick directive project for making AngularJS use TimelineJS3.
 
 Add the new Timeline JS3 css and javascript to your index.html.
 
-> &lt;link rel="stylesheet" href="bower_components/TimelineJS3/compiled/css/timeline.css" /&gt;
-> &lt;script src="bower_components/TimelineJS3/compiled/js/timeline.js" /&gt; 
+```
+ &lt;link rel="stylesheet" href="bower_components/TimelineJS3/compiled/css/timeline.css" /&gt;
+ &lt;script src="bower_components/TimelineJS3/compiled/js/timeline.js" /&gt; 
+```
 
-Add dependency to timeline your angular module: ng-timeline.
+Add dependency to timeline your angular module: `ng-timeline`.
+
+Use the directive:
+
+`<timeline class="timeline" data="timelineData" height="600"></timeline>`
 
 ## License
 
