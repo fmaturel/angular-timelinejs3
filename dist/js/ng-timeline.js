@@ -11,14 +11,14 @@ angular.module('ngTimeline')
   .directive('timeline', ['$rootScope', '$timeout', 'TimelineMediaTypeService', '$log',
     function ($rootScope, $timeout, TimelineMediaTypeService, $log) {
       return {
-        template: '<div id="ng-timeline" style="height: {{height || 500}}px;"></div>',
+        template: '<div id="ng-timeline" style="height: {{height || 700}}px;"></div>',
         restrict: 'E',
         scope: {
           id: '@',
           data: '=',
           index: '=',
           height: '@',
-          lang: '@'
+          lang: '='
         },
         require: '',
         replace: true,
@@ -66,7 +66,7 @@ angular.module('ngTimeline')
             if (data && !timeline) {
               $log.debug('Initializing timeline with configuration: ', conf);
               timeline = new VCO.Timeline('ng-timeline', new VCO.TimelineConfig(data), conf);
-
+              timeline.data = data;
               window.onresize = function (event) {
                 timeline.updateDisplay();
               };
@@ -74,7 +74,11 @@ angular.module('ngTimeline')
               $log.debug('VCO.Timeline object: ', timeline);
             } else if (data && timeline) {
               $log.debug('Using new data for timeline');
+              timeline.data = data;
               timeline.initialize('ng-timeline', new VCO.TimelineConfig(data), conf);
+            } else if (!data && timeline) {
+              $log.debug('Rendering timeline with new configuration');
+              timeline.initialize('ng-timeline', new VCO.TimelineConfig(timeline.data), conf);
             }
           };
 
@@ -100,6 +104,17 @@ angular.module('ngTimeline')
             $log.debug('Detected state change: ', newIndex);
             if (timeline && newIndex) {
               timeline.goTo(newIndex);
+            }
+          });
+
+          /**
+           * We watch a language change
+           */
+          scope.$watch('lang', function (newLang) {
+            $log.debug('Detected lang change: ', newLang);
+            if(timeline && newLang) {
+              conf.language = newLang;
+              render();
             }
           });
 
