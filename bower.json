@@ -1,7 +1,7 @@
 {
   "name": "angular-timelinejs3",
   "appPath": "app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A starter project for AngularJS",
   "homepage": "https://github.com/fmaturel/angular-timelinejs3",
   "license": "MIT",
