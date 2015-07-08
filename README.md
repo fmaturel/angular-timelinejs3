@@ -27,8 +27,8 @@ Then run
 Add the new Timeline JS3 css and javascript to your index.html.
 
 ```
- &lt;link rel="stylesheet" href="bower_components/TimelineJS3/compiled/css/timeline.css" /&gt;
- &lt;script src="bower_components/TimelineJS3/compiled/js/timeline.js" /&gt; 
+ <link rel="stylesheet" href="bower_components/TimelineJS3/compiled/css/timeline.css" />;
+ <script src="bower_components/TimelineJS3/compiled/js/timeline.js" />; 
 ```
 
 Add dependency to timeline your angular module: `ngTimeline`.

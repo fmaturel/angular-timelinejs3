@@ -4,7 +4,7 @@ angular.module('ngTimeline')
   .directive('timeline', ['$rootScope', '$timeout', 'TimelineMediaTypeService', '$log',
     function ($rootScope, $timeout, TimelineMediaTypeService, $log) {
       return {
-        template: '<div id="ng-timeline" style="height: {{height || 1200}}px;"></div>',
+        template: '<div id="ng-timeline" style="height: {{height || 700}}px;"></div>',
         restrict: 'E',
         scope: {
           id: '@',
