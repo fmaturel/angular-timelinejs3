@@ -1,3 +1,8 @@
 <div class="timeline-wrapper">
-  <timeline class="timeline" data="timelineData" height="600"></timeline>
+  <select name="select" ng-model="lang">
+    <option value="en" selected>en</option>
+    <option value="fr">fr</option>
+    <option value="de">de</option>
+  </select>
+  <timeline class="timeline" data="timelineData" height="700" lang="lang"></timeline>
 </div>

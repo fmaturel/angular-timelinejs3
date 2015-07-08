@@ -6,3 +6,7 @@
 
   content: "\e021";
 }
+
+.timeline .vco-attribution {
+  display: none;
+}
