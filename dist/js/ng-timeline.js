@@ -15,24 +15,24 @@ angular.module('ngTimeline')
         restrict: 'E',
         scope: {
           id: '@',
+          height: '@',
           data: '=',
           index: '=',
-          height: '@',
-          lang: '='
+          config: '='
         },
         require: '',
         replace: true,
-        link: function postLink(scope, element, attr) {
+        controller: ['$scope', function ($scope) {
 
           var timeline;
 
           //########################################################################## TIMELINE CONFIGURATION
 
           //@formatter:off
-          var conf = {
+          var conf = angular.extend({
             script_path: '',
             // width: will be 100%,
-            height: scope.height,
+            height: $scope.height,
             scale_factor: 1,                    // How many screen widths wide should the timeline be
             layout: 'landscape',                // portrait or landscape
             timenav_position: 'bottom',         // timeline on top or bottom
@@ -56,8 +56,8 @@ angular.module('ngTimeline')
             map_type: 'stamen:toner-lite',
             slide_padding_lr: 100,              // padding on slide of slide
             slide_default_fade: '50%',           // landscape fade
-            language: scope.lang || 'en'
-          };
+            language: 'en'
+          }, $scope.config);
           //@formatter:on
 
           //########################################################################## TIMELINE RENDERING
@@ -83,7 +83,7 @@ angular.module('ngTimeline')
           };
 
           // Async cases (when source data coming from services or other async call)
-          scope.$watch('data', function (newData) {
+          $scope.$watch('data', function (newData) {
             // Data not ready (maybe waiting on service or other async call)
             if (!newData) {
               $log.debug('Waiting for data');
@@ -100,7 +100,7 @@ angular.module('ngTimeline')
           /**
            * We can change current slide from controller
            */
-          scope.$watch('index', function (newIndex) {
+          $scope.$watch('index', function (newIndex) {
             $log.debug('Detected state change: ', newIndex);
             if (timeline && newIndex) {
               timeline.goTo(newIndex);
@@ -108,15 +108,15 @@ angular.module('ngTimeline')
           });
 
           /**
-           * We watch a language change
+           * We watch a configuration change
            */
-          scope.$watch('lang', function (newLang) {
-            $log.debug('Detected lang change: ', newLang);
-            if(timeline && newLang) {
-              conf.language = newLang;
+          $scope.$watch('config', function (newConfig) {
+            $log.debug('Detected configuration change: ', newConfig);
+            if (timeline && newConfig) {
+              angular.extend(conf, newConfig);
               render();
             }
-          });
+          }, true);
 
           /**
            * Key down events do change current Slide
@@ -143,10 +143,10 @@ angular.module('ngTimeline')
            * @type {TimelineMediaTypeService.getMediaType|Function}
            */
           VCO.MediaType = TimelineMediaTypeService.getMediaType;
-        }
+        }]
       };
     }]);
-  /* jshint +W106 */
+/* jshint +W106 */
 angular.module('ngTimeline')
 
   /* jshint -W106 */

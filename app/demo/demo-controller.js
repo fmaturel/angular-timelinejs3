@@ -2,7 +2,12 @@ angular.module('ngTimelineDemoApp')
 
   .controller('DemoController', ['$scope', '$timeout', function ($scope, $timeout) {
 
-    $scope.lang = 'en';
+    /* jshint -W106 */
+    $scope.config = {
+      timenav_position: 'top',
+      language: 'fr'
+    };
+    /* jshint +W106 */
 
     $timeout(function () {
       $scope.timelineData = {
@@ -41,8 +46,7 @@ angular.module('ngTimelineDemoApp')
           'start_date': {
             'year': '1610',
             'month': '2',
-            'day': '1',
-
+            'day': '1'
           },
           'end_date': {
             'year': '1630',

@@ -1,8 +1,22 @@
-<div class="timeline-wrapper">
-  <select name="select" ng-model="lang">
-    <option value="en" selected>en</option>
-    <option value="fr">fr</option>
-    <option value="de">de</option>
-  </select>
-  <timeline class="timeline" data="timelineData" height="700" lang="lang"></timeline>
+<div class="demo">
+  <h1>Angular TimelineJS V3 <i>beta</i> directive</h1>
+
+  <form novalidate>
+    <label for="language">Choose your language:</label>
+    <select id="language" ng-model="config.language">
+      <option value="en" selected>en</option>
+      <option value="fr">fr</option>
+      <option value="de">de</option>
+    </select>
+
+    <br>
+
+    <strong>Position of the timenav:</strong>
+    <label><input type="radio" value="top" ng-model="config.timenav_position" checked>top</label>
+    <label><input type="radio" value="bottom" ng-model="config.timenav_position">bottom</label>
+  </form>
+
+  <div class="timeline-wrapper">
+    <timeline class="timeline" data="timelineData" height="700" config="config"></timeline>
+  </div>
 </div>

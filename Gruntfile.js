@@ -67,7 +67,7 @@
           src: [
             '<%= yeoman.app %>/timeline/**/*.js'
           ],
-          dest: '.tmp/js/ng-timeline.js',
+          dest: 'dist/js/ng-timeline.js',
           options: {
             banner: ';(function( window, undefined ){ \n \'use strict\';\n\n',
             footer: '}( window ));'
@@ -90,8 +90,8 @@
             },
             middleware: function (connect) {
               return [
-                connect.static('.tmp'),
-                connect.static(appConfig.app)
+                connect.static(appConfig.app),
+                connect.static(appConfig.dist)
               ];
             }
           }
@@ -102,8 +102,8 @@
             middleware: function (connect) {
               return [
                 connect.static('tests'),
-                connect.static('.tmp'),
-                connect.static(appConfig.app)
+                connect.static(appConfig.app),
+                connect.static(appConfig.dist)
               ];
             }
           }
@@ -130,7 +130,7 @@
         },
         test: {
           options: {
-            jshintrc: 'test/.jshintrc'
+            jshintrc: '.jshintrc'
           },
           src: ['test/spec/{,*/}*.js']
         }

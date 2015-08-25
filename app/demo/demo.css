@@ -1,4 +1,7 @@
 /* app css stylesheet */
+.demo {
+  padding: 20px;
+}
 
 .timeline .vco-icon-media-demo:after {
   font-family: 'Glyphicons Halflings';
