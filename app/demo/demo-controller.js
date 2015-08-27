@@ -1,13 +1,12 @@
 angular.module('ngTimelineDemoApp')
 
+  /* jshint -W106 */
   .controller('DemoController', ['$scope', '$timeout', function ($scope, $timeout) {
 
-    /* jshint -W106 */
     $scope.config = {
       timenav_position: 'top',
       language: 'fr'
     };
-    /* jshint +W106 */
 
     $timeout(function () {
       $scope.timelineData = {
@@ -348,3 +347,4 @@ angular.module('ngTimelineDemoApp')
       $scope.index = 1;
     }, 200);
   }]);
+/* jshint +W106 */
