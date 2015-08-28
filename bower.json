@@ -8,6 +8,11 @@
   "main": [
     "dist/js/ng-timeline.js"
   ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test"
+  ],
   "dependencies": {
     "angular": "~1.4.0",
     "angular-route": "~1.4.0",
