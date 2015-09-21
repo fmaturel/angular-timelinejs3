@@ -1,5 +1,5 @@
 /* jshint -W106 */
-VCO.Media.DemoMedia = VCO.Media.Image.extend({
+TL.Media.DemoMedia = TL.Media.Image.extend({
 
   /*	Load the media
    ================================================== */
@@ -10,13 +10,13 @@ VCO.Media.DemoMedia = VCO.Media.Image.extend({
 
     // Link
     if (this.data.link) {
-      this._el.content_link = VCO.Dom.create('a', '', this._el.content);
+      this._el.content_link = TL.Dom.create('a', '', this._el.content);
       this._el.content_link.href = this.data.link;
       this._el.content_link.target = '_blank';
-      this._el.content_item = VCO.Dom.create('video', 'vco-media-item vco-media-shadow', this._el.content_link);
+      this._el.content_item = TL.Dom.create('video', 'vco-media-item vco-media-shadow', this._el.content_link);
     } else {
-      this._el.content_item = VCO.Dom.create('video', 'vco-media-item vco-media-shadow', this._el.content);
-      this._el.content_item.setAttribute("controls", "");
+      this._el.content_item = TL.Dom.create('video', 'vco-media-item vco-media-shadow', this._el.content);
+      this._el.content_item.setAttribute('controls', '');
     }
 
     // Media Loaded Event
@@ -30,7 +30,7 @@ VCO.Media.DemoMedia = VCO.Media.Image.extend({
   },
 
   _transformURL: function (url) {
-   return 'http://www.w3schools.com/html/' + url.replace(/<\/*demo>/g, '');
+    return 'http://www.w3schools.com/html/' + url.replace(/<\/*demo>/g, '');
   }
 });
 /* jshint +W106 */

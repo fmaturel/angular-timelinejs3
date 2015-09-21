@@ -50,12 +50,12 @@ angular.module('ngTimeline')
             relative_date: false,               // Use momentjs to show a relative date from the slide.text.date.created_time field
             use_bc: false,                      // Use declared suffix on dates earlier than 0
             duration: 1000,                     // Slider animation duration
-            ease: VCO.Ease.easeInOutQuint,      // Slider animation type
+            ease: TL.Ease.easeInOutQuint,       // Slider animation type
             dragging: true,
             trackResize: true,
             map_type: 'stamen:toner-lite',
             slide_padding_lr: 100,              // padding on slide of slide
-            slide_default_fade: '50%',           // landscape fade
+            slide_default_fade: '50%',          // landscape fade
             language: 'en'
           }, $scope.config);
           //@formatter:on
@@ -65,20 +65,20 @@ angular.module('ngTimeline')
           var render = function (data) {
             if (data && !timeline) {
               $log.debug('Initializing timeline with configuration: ', conf);
-              timeline = new VCO.Timeline('ng-timeline', new VCO.TimelineConfig(data), conf);
+              timeline = new TL.Timeline('ng-timeline', new TL.TimelineConfig(data), conf);
               timeline.data = data;
               window.onresize = function (event) {
                 timeline.updateDisplay();
               };
 
-              $log.debug('VCO.Timeline object: ', timeline);
+              $log.debug('TL.Timeline object: ', timeline);
             } else if (data && timeline) {
               $log.debug('Using new data for timeline');
               timeline.data = data;
-              timeline.initialize('ng-timeline', new VCO.TimelineConfig(data), conf);
+              timeline.initialize('ng-timeline', new TL.TimelineConfig(data), conf);
             } else if (!data && timeline) {
               $log.debug('Rendering timeline with new configuration');
-              timeline.initialize('ng-timeline', new VCO.TimelineConfig(timeline.data), conf);
+              timeline.initialize('ng-timeline', new TL.TimelineConfig(timeline.data), conf);
             }
           };
 
@@ -138,11 +138,11 @@ angular.module('ngTimeline')
           //########################################################################## TIMELINE OBJECTS
 
           /**
-           * Overrides common VCO.MediaType with custom types provided by the TimelineMediaTypeService
-           * @see VCO.MediaType
+           * Overrides common TL.MediaType with custom types provided by the TimelineMediaTypeService
+           * @see TL.MediaType
            * @type {TimelineMediaTypeService.getMediaType|Function}
            */
-          VCO.MediaType = TimelineMediaTypeService.getMediaType;
+          TL.MediaType = TimelineMediaTypeService.getMediaType;
         }]
       };
     }]);
@@ -152,7 +152,7 @@ angular.module('ngTimeline')
   /* jshint -W106 */
   .provider('TimelineMediaTypeService', function () {
 
-    var vcoMediaType = VCO.MediaType, mediaTypes = [];
+    var vcoMediaType = TL.MediaType, mediaTypes = [];
 
     this.addMediaType = function (mediaType) {
       mediaTypes.push({

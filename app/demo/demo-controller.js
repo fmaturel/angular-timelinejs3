@@ -12,7 +12,7 @@ angular.module('ngTimelineDemoApp')
       $scope.timelineData = {
         'title': {
           'media': {
-            'url': '/images/input.png',
+            'url': 'images/input.png',
             'caption': 'From punch cards to multi touch.',
             'credit': 'Arjuna Soriano'
           },
@@ -59,7 +59,7 @@ angular.module('ngTimelineDemoApp')
           group: 'demo-group2'
         }, {
           'media': {
-            'url': '/app/images/input.png',
+            'url': 'images/input.png',
             'caption': 'This piece is on display at Mus\u00e9e des Arts et M\u00e9tiers, Paris.',
             'credit': '\u00a9 2005 <a href=\'http://commons.wikimedia.org/wiki/User:David.Monniaux\'>David Monniaux</a>  '
           },

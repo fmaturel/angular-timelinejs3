@@ -3,7 +3,7 @@ angular.module('ngTimeline')
   /* jshint -W106 */
   .provider('TimelineMediaTypeService', function () {
 
-    var vcoMediaType = VCO.MediaType, mediaTypes = [];
+    var vcoMediaType = TL.MediaType, mediaTypes = [];
 
     this.addMediaType = function (mediaType) {
       mediaTypes.push({

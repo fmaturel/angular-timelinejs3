@@ -17,7 +17,7 @@
     "angular": "~1.4.0",
     "angular-route": "~1.4.0",
     "bootstrap": "~3.3.5",
-    "TimelineJS3": "https://github.com/NUKnightLab/TimelineJS3.git#3.1.12"
+    "TimelineJS3": "https://github.com/NUKnightLab/TimelineJS3.git#3.3.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"

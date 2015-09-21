@@ -8,11 +8,11 @@ angular.module('ngTimelineDemoApp', [
   config(['$routeProvider', 'TimelineMediaTypeServiceProvider', function ($routeProvider, TimelineMediaTypeServiceProvider) {
     $routeProvider
       .when('/demo', {
-        templateUrl: './demo/demo.html',
+        templateUrl: 'demo.html',
         controller: 'DemoController'
       })
       .otherwise({redirectTo: '/demo'});
 
     /*- TIMELINE MEDIA TYPE ---------------------------------------------------------------------------------------- */
-    TimelineMediaTypeServiceProvider.addMediaType({type: 'media-demo', name: 'DemoMedia', urlRegex: '\<demo\>', cls: VCO.Media.DemoMedia});
+    TimelineMediaTypeServiceProvider.addMediaType({type: 'media-demo', name: 'DemoMedia', urlRegex: '\<demo\>', cls: TL.Media.DemoMedia});
   }]);

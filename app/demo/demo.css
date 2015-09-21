@@ -3,13 +3,17 @@
   padding: 20px;
 }
 
-.timeline .vco-icon-media-demo:after {
+.timeline-wrapper {
+  position: relative;
+}
+
+.timeline-wrapper .tl-icon-media-demo:after {
   font-family: 'Glyphicons Halflings';
   font-weight: bold;
 
   content: "\e021";
 }
 
-.timeline .vco-attribution {
+.timeline .tl-attribution {
   display: none;
 }

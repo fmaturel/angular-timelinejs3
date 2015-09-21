@@ -86,7 +86,7 @@
         livereload: {
           options: {
             open: {
-              target: 'http://localhost:9020/'
+              target: 'http://localhost:9030/demo'
             },
             middleware: function (connect) {
               return [
