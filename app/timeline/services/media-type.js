@@ -3,7 +3,7 @@ angular.module('ngTimeline')
   /* jshint -W106 */
   .provider('TimelineMediaTypeService', function () {
 
-    var vcoMediaType = TL.MediaType, mediaTypes = [];
+    var tlMediaType = TL.MediaType, mediaTypes = [];
 
     this.addMediaType = function (mediaType) {
       mediaTypes.push({
@@ -21,7 +21,7 @@ angular.module('ngTimeline')
     this.$get = function () {
       return {
         getMediaType: function (m) {
-          var result = vcoMediaType(m);
+          var result = tlMediaType(m);
           if (!result || result.name === 'Imageblank') {
             for (var i = 0; i < mediaTypes.length; i++) {
               if (mediaMatch(m, mediaTypes[i].match_str)) {
