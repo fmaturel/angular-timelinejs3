@@ -1,8 +1,21 @@
 angular.module('ngTimeline')
 
   /* jshint -W106 */
-  .directive('timeline', ['$rootScope', '$timeout', 'TimelineMediaTypeService', '$log',
-    function ($rootScope, $timeout, TimelineMediaTypeService, $log) {
+  .directive('timeline', ['$rootScope', '$compile', 'timelineMediaTypeService', '$log',
+    function ($rootScope, $compile, timelineMediaTypeService, $log) {
+
+      function angularize(element, className, directiveName, scope, isTitleSlideMatching) {
+        var children = angular.element(element[0].querySelectorAll(className));
+        children.attr(directiveName, true);
+
+        angular.forEach(children, function (slide, index) {
+          // create a new child scope
+          var childScope = scope.$new();
+          childScope.data = scope.data.events[index - (isTitleSlideMatching ? 1 : 0)];
+          $compile(slide)(childScope);
+        });
+      }
+
       return {
         template: '<div id="ng-timeline" style="height: {{height || 700}}px;"></div>',
         restrict: 'E',
@@ -13,10 +26,8 @@ angular.module('ngTimeline')
           index: '=',
           config: '='
         },
-        require: '',
         replace: true,
         controller: ['$scope', function ($scope) {
-
           var timeline;
 
           //########################################################################## TIMELINE CONFIGURATION
@@ -58,11 +69,12 @@ angular.module('ngTimeline')
           var render = function (data) {
             if (data && !timeline) {
               $log.debug('Initializing timeline with configuration: ', conf);
+
+              // Create the timeline
               timeline = new TL.Timeline('ng-timeline', new TL.TimelineConfig(data), conf);
+
+              // Keep track on current data
               timeline.data = data;
-              window.onresize = function (event) {
-                timeline.updateDisplay();
-              };
 
               $log.debug('TL.Timeline object: ', timeline);
             } else if (data && timeline) {
@@ -131,12 +143,32 @@ angular.module('ngTimeline')
           //########################################################################## TIMELINE OBJECTS
 
           /**
-           * Overrides common TL.MediaType with custom types provided by the TimelineMediaTypeService
+           * Overrides common TL.MediaType with custom types provided by the timelineMediaTypeService
            * @see TL.MediaType
-           * @type {TimelineMediaTypeService.getMediaType|Function}
+           * @type {timelineMediaTypeService.getMediaType|Function}
            */
-          TL.MediaType = TimelineMediaTypeService.getMediaType;
-        }]
+          TL.MediaType = timelineMediaTypeService.getMediaType;
+
+          /**
+           * Overrides common TL.Timeline.prototype.initialize with custom scope events
+           * @returns {*}
+           */
+          var initPrototype = TL.Timeline.prototype.initialize;
+          TL.Timeline.prototype.initialize = function () {
+            this.on('loaded', function (e) {
+              $scope.$emit('timelineLoaded');
+            });
+            return initPrototype.apply(this, arguments);
+          };
+        }],
+        link: function (scope, element, attr) {
+
+          // When data is loaded
+          scope.$on('timelineLoaded', function () {
+            angularize(element, '.tl-slide-content', 'timeline-slide', scope, true);
+            angularize(element, '.tl-timemarker-content', 'timeline-timemarker', scope);
+          });
+        }
       };
     }]);
 /* jshint +W106 */

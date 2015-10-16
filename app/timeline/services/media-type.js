@@ -1,7 +1,7 @@
 angular.module('ngTimeline')
 
   /* jshint -W106 */
-  .provider('TimelineMediaTypeService', function () {
+  .provider('timelineMediaTypeService', function () {
 
     var tlMediaType = TL.MediaType, mediaTypes = [];
 
@@ -21,16 +21,14 @@ angular.module('ngTimeline')
     this.$get = function () {
       return {
         getMediaType: function (m) {
-          var result = tlMediaType(m);
-          if (!result || result.name === 'Imageblank') {
-            for (var i = 0; i < mediaTypes.length; i++) {
-              if (mediaMatch(m, mediaTypes[i].match_str)) {
-                mediaTypes[i].url = m.url;
-                return mediaTypes[i];
-              }
+          for (var i = 0; i < mediaTypes.length; i++) {
+            if (mediaMatch(m, mediaTypes[i].match_str)) {
+              mediaTypes[i].url = m.url;
+              return mediaTypes[i];
             }
           }
-          return result;
+
+          return tlMediaType(m);
         }
       };
     };

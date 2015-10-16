@@ -38,9 +38,11 @@ angular.module('ngTimelineDemoApp')
           },
           group: 'demo-group1'
         }, {
+          'test': 'a text received from server',
+          'videoUrl': 'http://www.w3schools.com/html/mov_bbb.mp4',
           'media': {
-            'url': '<demo>mov_bbb.mp4</demo>',
-            'caption': 'This is a new Media Type!'
+            'url': '<demo video-url="data.videoUrl"></demo>',
+            'caption': '<span>{{model.test}}</span>'
           },
           'start_date': {
             'year': '1610',
@@ -53,8 +55,8 @@ angular.module('ngTimelineDemoApp')
             'day': '1'
           },
           'text': {
-            'headline': 'DEMO: A new media type',
-            'text': 'This is the demo text..'
+            'headline': 'DEMO: {{data.test}}',
+            'text': 'This is the demo text with a link to angular data (<a ng-href="{{data.videoUrl}}">source</a>)'
           },
           group: 'demo-group2'
         }, {

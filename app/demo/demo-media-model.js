@@ -4,33 +4,16 @@ TL.Media.DemoMedia = TL.Media.Image.extend({
   /*	Load the media
    ================================================== */
   _loadMedia: function () {
-    var self = this;
+    var scope = angular.element(this._el.content).scope();
+
     // Loading Message
     this.loadingMessage();
 
-    // Link
-    if (this.data.link) {
-      this._el.content_link = TL.Dom.create('a', '', this._el.content);
-      this._el.content_link.href = this.data.link;
-      this._el.content_link.target = '_blank';
-      this._el.content_item = TL.Dom.create('video', 'vco-media-item vco-media-shadow', this._el.content_link);
-    } else {
-      this._el.content_item = TL.Dom.create('video', 'vco-media-item vco-media-shadow', this._el.content);
-      this._el.content_item.setAttribute('controls', '');
-    }
-
-    // Media Loaded Event
-    this._el.content_item.addEventListener('load', function (e) {
-      self.onMediaLoaded();
-    });
-
-    this._el.content_item.src = this._transformURL(this.data.url);
+    scope.$emit('onMediaLoaded', this);
 
     this.onLoaded();
-  },
 
-  _transformURL: function (url) {
-    return 'http://www.w3schools.com/html/' + url.replace(/<\/*demo>/g, '');
+    scope.$emit('onCaptionLoaded', this);
   }
 });
 /* jshint +W106 */

@@ -5,7 +5,7 @@ angular.module('ngTimelineDemoApp', [
   'ngTimeline'
 ]).
 
-  config(['$routeProvider', 'TimelineMediaTypeServiceProvider', function ($routeProvider, TimelineMediaTypeServiceProvider) {
+  config(['$routeProvider', '$sceDelegateProvider', 'timelineMediaTypeServiceProvider', function ($routeProvider, $sceDelegateProvider, timelineMediaTypeServiceProvider) {
     $routeProvider
       .when('/demo', {
         templateUrl: 'demo.html',
@@ -13,6 +13,9 @@ angular.module('ngTimelineDemoApp', [
       })
       .otherwise({redirectTo: '/demo'});
 
+    /*- TRUST URL FROM THOSE SOURCES ---------------------------------------------------------------------------- */
+    $sceDelegateProvider.resourceUrlWhitelist(['self', 'http://www.w3schools.com/**']);
+
     /*- TIMELINE MEDIA TYPE ---------------------------------------------------------------------------------------- */
-    TimelineMediaTypeServiceProvider.addMediaType({type: 'media-demo', name: 'DemoMedia', urlRegex: '\<demo\>', cls: TL.Media.DemoMedia});
+    timelineMediaTypeServiceProvider.addMediaType({type: 'media-demo', name: 'DemoMedia', urlRegex: /^<demo[^>]*>.*<\/demo>$/, cls: TL.Media.DemoMedia});
   }]);
