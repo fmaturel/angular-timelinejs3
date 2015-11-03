@@ -35,10 +35,6 @@ angular.module('ngTimeline')
     function ($compile, $log) {
       return {
         restrict: 'A',
-        scope: false,
-        controller: ['$scope', function ($scope) {
-
-        }],
         link: function (scope, element) {
           $log.debug(scope.data);
 
@@ -69,14 +65,13 @@ angular.module('ngTimeline')
   /* jshint -W106 */
   .directive('timeline', ['$rootScope', '$compile', 'timelineMediaTypeService', '$log',
     function ($rootScope, $compile, timelineMediaTypeService, $log) {
-
       function angularize(element, className, directiveName, scope, isTitleSlideMatching) {
         var children = angular.element(element[0].querySelectorAll(className));
         children.attr(directiveName, true);
 
         angular.forEach(children, function (slide, index) {
           // create a new child scope
-          var childScope = scope.$new();
+          var childScope = $rootScope.$new();
           childScope.data = scope.data.events[index - (isTitleSlideMatching ? 1 : 0)];
           $compile(slide)(childScope);
         });

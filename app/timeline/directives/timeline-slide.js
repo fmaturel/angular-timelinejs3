@@ -5,10 +5,6 @@ angular.module('ngTimeline')
     function ($compile, $log) {
       return {
         restrict: 'A',
-        scope: false,
-        controller: ['$scope', function ($scope) {
-
-        }],
         link: function (scope, element) {
           $log.debug(scope.data);
 
