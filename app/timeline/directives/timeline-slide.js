@@ -1,6 +1,5 @@
 angular.module('ngTimeline')
 
-  /* jshint -W106 */
   .directive('timelineSlide', ['$compile', '$log',
     function ($compile, $log) {
       return {
@@ -17,4 +16,3 @@ angular.module('ngTimeline')
         }
       };
     }]);
-/* jshint +W106 */
