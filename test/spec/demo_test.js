@@ -1,6 +1,5 @@
-'use strict';
-
 describe('ngTimelineDemoApp module', function () {
+  'use strict';
 
   var scope, createController;
 

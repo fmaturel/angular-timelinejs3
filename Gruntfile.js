@@ -17,13 +17,12 @@
     require('time-grunt')(grunt);
 
     var serveStatic = require('serve-static');
-    var bower = require('./bower.json');
 
     // Configurable paths for the application
     var appConfig = {
-      name: bower.name,
-      app: bower.appPath || 'app',
-      dist: 'dist'
+      app: 'app',
+      dist: 'dist',
+      test: 'test'
     };
 
     // Define the configuration for all the tasks
@@ -34,10 +33,6 @@
 
       // Watches files for changes and runs tasks based on the changed files
       watch: {
-        bower: {
-          files: ['bower.json'],
-          tasks: ['wiredep']
-        },
         js: {
           files: ['<%= yeoman.app %>/*/{,*/}*.js'],
           tasks: ['newer:concat:js', 'newer:jshint:all'],
@@ -46,7 +41,7 @@
           }
         },
         jsTest: {
-          files: ['test/spec/{,*/}*.js'],
+          files: ['<%= yeoman.test %>/spec/{,*/}*.js'],
           tasks: ['newer:jshint:test', 'karma']
         },
         gruntfile: {
@@ -91,7 +86,7 @@
             },
             middleware: function (connect) {
               return [
-                connect().use('vendor', serveStatic('./node_modules')),
+                connect().use('/vendor', serveStatic('./node_modules')),
                 serveStatic(appConfig.app),
                 serveStatic(appConfig.dist)
               ];
@@ -101,9 +96,9 @@
         test: {
           options: {
             port: 9031,
-            middleware: function (connect) {
+            middleware: function () {
               return [
-                serveStatic('tests'),
+                serveStatic(appConfig.test),
                 serveStatic(appConfig.app),
                 serveStatic(appConfig.dist)
               ];
@@ -111,12 +106,12 @@
           }
         },
         dist: {
-         options: {
-           open: {
-             target: 'http://localhost:9030/demo'
-           },
-           base: '<%= yeoman.dist %>'
-         }
+          options: {
+            open: {
+              target: 'http://localhost:9030/demo'
+            },
+            base: '<%= yeoman.dist %>'
+          }
         }
       },
 
@@ -129,14 +124,14 @@
         all: {
           src: [
             'Gruntfile.js',
-            '.tmp/js/ng-timeline.js'
+            '<%= yeoman.app %>/**/*.js'
           ]
         },
         test: {
           options: {
             jshintrc: '.jshintrc'
           },
-          src: ['test/spec/{,*/}*.js']
+          src: ['<%= yeoman.test %>/{,*/}*.js']
         }
       },
 
@@ -146,24 +141,8 @@
           files: [{
             dot: true,
             src: [
-              '.tmp',
-              '<%= yeoman.dist %>/{,*/}*',
-              '!<%= yeoman.dist %>/.git{,*/}*'
+              '<%= yeoman.dist %>/{,*/}*'
             ]
-          }]
-        },
-        server: '.tmp'
-      },
-
-      // ng-annotate tries to make the code safe for minification automatically
-      // by using the Angular long form for dependency injection.
-      ngAnnotate: {
-        dist: {
-          files: [{
-            expand: true,
-            cwd: '.tmp/js',
-            src: '*.js',
-            dest: '.tmp/js'
           }]
         }
       },
@@ -182,23 +161,11 @@
               'demo/**'
             ]
           }, {
-           expand: true,
-           dot: true,
-           cwd: '.tmp',
-           dest: '<%= yeoman.dist %>',
-           src: ['js/ng-timeline.js']
-          }, {
             expand: true,
             cwd: 'node_modules',
             src: ['angular/angular*.js', 'angular-route/angular-route*.js'],
             dest: '<%= yeoman.dist %>/vendor'
           }]
-        },
-        styles: {
-          expand: true,
-          cwd: '<%= yeoman.app %>/styles',
-          dest: '.tmp/styles/',
-          src: '{,*/}*.css'
         }
       },
 
@@ -217,7 +184,8 @@
       }
 
       grunt.task.run([
-        'clean:server',
+        'clean:dist',
+        'jshint:all',
         'concat:js',
         'connect:livereload',
         'watch'
@@ -225,7 +193,7 @@
     });
 
     grunt.registerTask('test', [
-      'clean:server',
+      'jshint',
       'connect:test',
       'karma'
     ]);
@@ -233,7 +201,6 @@
     grunt.registerTask('build', [
       'clean:dist',
       'concat',
-      'ngAnnotate',
       'copy:dist'
     ]);
 
