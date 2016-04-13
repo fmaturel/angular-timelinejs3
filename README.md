@@ -11,9 +11,7 @@ Run the demo @home with few steps (prerequisite git & node V0.10+ & npm installe
 ```
  git clone https://github.com/fmaturel/angular-timelinejs3.git && cd angular-timelinejs3
  npm install
- sudo npm install -g grunt-cli
- sudo npm install -g bower
- bower install
+ npm install -g grunt-cli
 ```
 
 Then run 
@@ -22,13 +20,17 @@ Then run
 
 ## Install
 
-> bower install angular-timelinejs3 --save
+> bower install --save angular-timelinejs3
+
+or 
+
+> npm install --save angular-timelinejs3
 
 Add the new Timeline JS3 css and javascript to your index.html.
 
 ```
- <link rel="stylesheet" href="bower_components/TimelineJS3/compiled/css/timeline.css" />;
- <script src="bower_components/TimelineJS3/compiled/js/timeline.js" />; 
+  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+  <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
 ```
 
 Add dependency to timeline your angular module: `ngTimeline`.

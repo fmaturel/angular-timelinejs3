@@ -4,10 +4,10 @@ module.exports = function (config) {
     basePath: '../',
 
     files: [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-route/angular-route.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/bower_components/TimelineJS3/compiled/js/timeline.js',
+      'https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js',
+      'node_modules/angular/angular.js',
+      'node_modules/angular-route/angular-route.js',
+      'node_modules/angular-mocks/angular-mocks.js',
       'app/timeline/**/*.js',
       'app/demo/*.js',
       'test/**/*.js'

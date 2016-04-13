@@ -1,4 +1,4 @@
-angular.module('ngTimeline')
+angular.module('ngTimelineDemoApp')
 
   .directive('demo', ['$log',
     function ($log) {

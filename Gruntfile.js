@@ -16,6 +16,7 @@
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
+    var serveStatic = require('serve-static');
     var bower = require('./bower.json');
 
     // Configurable paths for the application
@@ -90,8 +91,9 @@
             },
             middleware: function (connect) {
               return [
-                connect.static(appConfig.app),
-                connect.static(appConfig.dist)
+                connect().use('vendor', serveStatic('./node_modules')),
+                serveStatic(appConfig.app),
+                serveStatic(appConfig.dist)
               ];
             }
           }
@@ -101,16 +103,18 @@
             port: 9031,
             middleware: function (connect) {
               return [
-                connect.static('tests'),
-                connect.static(appConfig.app),
-                connect.static(appConfig.dist)
+                serveStatic('tests'),
+                serveStatic(appConfig.app),
+                serveStatic(appConfig.dist)
               ];
             }
           }
         },
         dist: {
          options: {
-           open: true,
+           open: {
+             target: 'http://localhost:9030/demo'
+           },
            base: '<%= yeoman.dist %>'
          }
         }
@@ -185,9 +189,9 @@
            src: ['js/ng-timeline.js']
           }, {
             expand: true,
-            cwd: '<%= yeoman.app %>/bower_components',
-            src: '**',
-            dest: '<%= yeoman.dist %>/bower_components'
+            cwd: 'node_modules',
+            src: ['angular/angular*.js', 'angular-route/angular-route*.js'],
+            dest: '<%= yeoman.dist %>/vendor'
           }]
         },
         styles: {
