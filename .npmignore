@@ -2,3 +2,4 @@ app
 test
 Gruntfile.js
 .gitignore
+.idea
