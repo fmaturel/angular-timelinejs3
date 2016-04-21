@@ -215,13 +215,13 @@ angular.module('ngTimeline')
            */
           var initPrototype = TL.Timeline.prototype.initialize;
           TL.Timeline.prototype.initialize = function () {
-            this.on('loaded', function (e) {
-              $scope.$emit('timelineLoaded');
+            !this.hasEventListeners('loaded') && this.on('loaded', function (e) {
+              $scope.$emit('timelineLoaded', e);
             });
             return initPrototype.apply(this, arguments);
           };
         }],
-        link: function (scope, element, attr) {
+        link: function (scope, element) {
 
           // When data is loaded
           scope.$on('timelineLoaded', function () {
