@@ -154,9 +154,12 @@ angular.module('ngTimeline')
            */
           var initPrototype = TL.Timeline.prototype.initialize;
           TL.Timeline.prototype.initialize = function () {
-            !this.hasEventListeners('loaded') && this.on('loaded', function (e) {
-              $scope.$emit('timelineLoaded', e);
-            });
+            // Just install listener on first time loaded
+            if(!this.hasEventListeners('loaded')) {
+              this.on('loaded', function (e) {
+                $scope.$emit('timelineLoaded', e);
+              });
+            }
             return initPrototype.apply(this, arguments);
           };
         }],
