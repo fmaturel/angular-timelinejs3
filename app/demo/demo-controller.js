@@ -3,13 +3,14 @@ angular.module('ngTimelineDemoApp')
   /* jshint -W106 */
   .controller('DemoController', ['$scope', '$timeout', function ($scope, $timeout) {
 
-    $scope.config = {
+    $scope.options = {
+      debug: true,
       timenav_position: 'top',
       language: 'fr'
     };
 
     $timeout(function () {
-      $scope.timelineData = {
+      var data = {
         'title': {
           'media': {
             'url': 'images/input.png',
@@ -346,7 +347,14 @@ angular.module('ngTimelineDemoApp')
         }]
       };
 
-      $scope.index = 1;
+      $scope.timeline.setData(data);
+      $scope.timeline.goTo(1);
     }, 200);
+
+    $scope.$watch('options', function(newOptions) {
+      if($scope.timeline) {
+        $scope.timeline.setOptions(newOptions);
+      }
+    }, true);
   }]);
 /* jshint +W106 */

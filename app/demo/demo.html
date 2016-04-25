@@ -3,7 +3,7 @@
 
   <form novalidate>
     <label for="language">Choose your language:</label>
-    <select id="language" ng-model="config.language">
+    <select id="language" ng-model="options.language">
       <option value="en" selected>en</option>
       <option value="fr">fr</option>
       <option value="de">de</option>
@@ -12,11 +12,20 @@
     <hr>
 
     <strong>Position of the timenav:</strong>
-    <label><input type="radio" value="top" ng-model="config.timenav_position" checked="checked">top</label>
-    <label><input type="radio" value="bottom" ng-model="config.timenav_position">bottom</label>
+    <label><input type="radio" value="top" ng-model="options.timenav_position" checked="checked">top</label>
+    <label><input type="radio" value="bottom" ng-model="options.timenav_position">bottom</label>
+
+    <hr>
+
+    <button class="btn btn-default" ng-click="timeline.goToPrev()">Previous slide</button>
+    <button class="btn btn-default" ng-click="timeline.goToNext()">Next slide</button>
+
+    <hr>
   </form>
 
   <div class="timeline-wrapper">
-    <timeline data="timelineData" height="700" config="config"></timeline>
+    <timeline control="timeline" height="500" options="options"></timeline>
   </div>
+
+  <pre>{{timeline.version}}</pre>
 </div>
