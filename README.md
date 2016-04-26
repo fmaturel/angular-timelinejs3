@@ -37,7 +37,7 @@ Add dependency to timeline your angular module: `ngTimeline`.
 
 Use the directive:
 
-`<timeline class="timeline" data="timelineData" height="600"></timeline>`
+`<timeline control="timeline" height="600" options="options"></timeline>`
 
 ## License
 
