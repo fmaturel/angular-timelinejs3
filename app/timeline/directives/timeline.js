@@ -50,7 +50,7 @@ angular.module('ngTimeline')
       }
 
       return {
-        template: '<div id="ng-timeline" style="height: {{height || 700}}px;"></div>',
+        template: '<div id="ng-timeline" style="height: {{height || \'700px\'}};"></div>',
         restrict: 'E',
         scope: {
           height: '@',
