@@ -163,7 +163,7 @@ angular.module('ngTimeline')
             }
           };
 
-          //########################################################################## TIMELINE OPTIONS
+          //########################################################################## TIMELINE DATA
           TL.Timeline.prototype.setData = function (data) {
             if (tl && data) {
               $log.debug('Loading timeline data: ', data);
