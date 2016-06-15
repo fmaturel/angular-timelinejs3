@@ -111,14 +111,13 @@ angular.module('ngTimeline')
       }
 
       return {
-        template: '<div id="ng-timeline" style="height: {{height || \'700px\'}};"></div>',
+        template: '<div id="ng-timeline" ng-style="{height: height || \'700px\'};"></div>',
         restrict: 'E',
         scope: {
           height: '@',
           options: '=',
           timeline: '=control'
         },
-        replace: true,
         controller: ['$scope', function ($scope) {
 
           // The timeline in this directive
@@ -174,9 +173,9 @@ angular.module('ngTimeline')
           //########################################################################## TIMELINE OPTIONS
           TL.Timeline.prototype.setOptions = function (options) {
             if (tl && options) {
-              angular.extend(options, options);
+              angular.extend(tl.options, options);
               $log.debug('Change timeline options: ', options);
-              $scope.timeline.initialize('ng-timeline', tl.config, options);
+              $scope.timeline.initialize('ng-timeline', tl.config, tl.options);
             }
           };
 
