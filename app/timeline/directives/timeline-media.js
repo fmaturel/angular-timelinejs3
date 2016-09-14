@@ -15,7 +15,9 @@ angular.module('ngTimeline')
 
           // Loads caption
           $scope.$on('onCaptionLoaded', function (e, media) {
-            angular.element(media._el.caption).empty().append($compile(media.data.caption)($scope));
+            if(media._el && media._el.caption) {
+              angular.element(media._el.caption).empty().append($compile(media.data.caption)($scope));
+            }
           });
         }]
       };
