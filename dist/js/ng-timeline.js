@@ -22,7 +22,9 @@ angular.module('ngTimeline')
 
           // Loads caption
           $scope.$on('onCaptionLoaded', function (e, media) {
-            angular.element(media._el.caption).empty().append($compile(media.data.caption)($scope));
+            if(media._el && media._el.caption) {
+              angular.element(media._el.caption).empty().append($compile(media.data.caption)($scope));
+            }
           });
         }]
       };
@@ -61,7 +63,7 @@ angular.module('ngTimeline')
     }]);
 angular.module('ngTimeline')
 
-  /* jshint -W106 */
+/* jshint -W106 */
   .directive('timeline', ['$rootScope', '$compile', 'timelineMediaTypeService', '$log',
     function ($rootScope, $compile, timelineMediaTypeService, $log) {
 
@@ -147,7 +149,10 @@ angular.module('ngTimeline')
                 $scope.$emit('timelineLoaded', e);
               });
             }
-            return initPrototype.apply(this, arguments);
+            // Avoid initialize if container disappeared
+            if (document.getElementById('ng-timeline')) {
+              return initPrototype.apply(this, arguments);
+            }
           };
 
           /**

@@ -1,6 +1,6 @@
 angular.module('ngTimeline')
 
-  /* jshint -W106 */
+/* jshint -W106 */
   .directive('timeline', ['$rootScope', '$compile', 'timelineMediaTypeService', '$log',
     function ($rootScope, $compile, timelineMediaTypeService, $log) {
 
@@ -86,7 +86,10 @@ angular.module('ngTimeline')
                 $scope.$emit('timelineLoaded', e);
               });
             }
-            return initPrototype.apply(this, arguments);
+            // Avoid initialize if container disappeared
+            if (document.getElementById('ng-timeline')) {
+              return initPrototype.apply(this, arguments);
+            }
           };
 
           /**
